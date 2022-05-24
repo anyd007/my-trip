@@ -2,13 +2,95 @@ body,html {
     margin: auto;
     height: 100vh;
   }
-/* .mainContener{
-    background-image: url("../img/map-and-navigation.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    min-height: 100%;
-    height: 100vh;
+.titleContener, .inputContener{
+    text-align: center;
+    
+}
+.inputContener{
+    margin-top: 8%;
+}
+h1{
+    font-size: 75px;
+    padding-top: 1%;
+    margin-top: auto;
+    letter-spacing: 6px;
+    text-decoration: 1px solid black;
+    animation: shadow 6s ease forwards infinite;
+}
+@keyframes shadow {
+    0%, 100% {
+        text-shadow: 0 0 0 blueviolet;
+    }
+    50%{
+       text-shadow: 3px 3px 20px #ff99cc, -2px 1px 30px black;
+    }
+}
+.inputContener label{
     position: relative;
-} */
+    color: black;
+    margin-top: 0px;
+    font-size: 35px;
+    text-shadow:  3px 3px 20px #ff99cc, -2px 1px 30px #ff99cc;
+}
+.tripEndDiv{
+    margin-top: 80px;
+}
+.itripInputs{
+    font-family: Oswald, sans-serif;
+    font-size: 25px;
+    letter-spacing: 1.5px;
+    font-style: italic;
+    color: black;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid blueviolet;
+    text-align: center;
+    width: 70%;
+    text-shadow:  3px 3px 20px #ff99cc, -2px 1px 30px #ff99cc;
+}
+.itripInputs:focus{
+    outline: none;
+    border-bottom: 4px solid yellowgreen;
+    transition-duration: 400ms;
+}
+input::placeholder{
+    opacity:0;
+}
+.spanAnime{
+    position: absolute;
+    top: -60%;
+    left: 50%;
+    transform: translate(-50%);
+    transition-duration:400ms;
+}
+.inputContener label:focus-within > .spanAnime,
+.itripInputs:not(:placeholder-shown) + .spanAnime{
+    left: 10%;
+    top: -10%;
+    font-size: 15px;
+}
+.btn{
+    cursor: pointer;
+    color: black;
+    font-family: Oswald, sans-serif;
+    margin: 30px;
+    border-radius: 10px;
+    border: 3px solid blueviolet;
+    font-size: 25px;
+    padding: 8px;
+    background: transparent;
+    text-shadow:  3px 3px 20px #ff99cc, -2px 1px 30px #ff99cc;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    transition-duration:400ms;
+}
+.btn:hover{
+    background-color: blueviolet;
+    color: yellow;
+}
+.btn:active{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    transition-duration:400ms;
+}
+
+
+ 
