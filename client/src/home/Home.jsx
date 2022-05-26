@@ -1,14 +1,21 @@
 import React,{useState, useEffect, useMemo} from "react";
 import { useBackground } from "../contexts/StyleContext";
-import { GeneralError } from "../errors/Errors";
+import { useApi } from "../contexts/ApiContext";
+import { Bubbles } from "../loadnig/Loadnig"
 import "./home.css"
+import "../contexts/styleContext.css"
 
-const Home = (props)=>{
-
+const Home = ()=>{
 const {toggle, theme, darker} = useBackground()
+const {data, loading, error, setData, setError, setLoading} = useApi()
 const [startValue, setStartValue] = useState([])
 const [endValue, setEndValue] = useState([])
 
+useEffect(()=>{
+    setData(data)
+    setError(error)
+    setLoading(loading)
+    },[data, error, loading])
 
  const getStartValue = (startValue) =>{
     setStartValue(startValue)
@@ -16,10 +23,18 @@ const [endValue, setEndValue] = useState([])
 const getEndValue = (endValue) =>{
     setEndValue(endValue)
 }
+useEffect(()=>{
+    setStartValue(startValue)
+},[startValue])
+useEffect(()=>{
+    setEndValue(endValue)
+},[endValue])
 
 
 return(
 <div className="mainContener" style={theme} >
+    {loading&& < Bubbles />}
+    {error && <div className="blur1"><span className="error">{error}</span></div>}
   <div className="titleContener">
       <h1>DOKĄD SIĘ WYBIERASZ??</h1>
   </div>
@@ -33,7 +48,7 @@ return(
       className="itripInputs"
        type="text" 
        placeholder="WYZNACZ POCZĄTEK TRASY"
-       value={startValue}
+       value={startValue ?? ""}
        onChange={e=> getStartValue(e.target.value)}/>
       <span className="spanAnime">WYZNACZ POCZĄTEK TRASY</span>
       </label>
@@ -46,7 +61,7 @@ return(
       type="text" 
       className="itripInputs"
        placeholder="WYZNACZ KONIEC TRASY"
-       value={endValue}
+       value={endValue ?? ""}
        onChange={e=> getEndValue(e.target.value)}/>
       <span className="spanAnime">WYZNACZ KONIEC TRASY</span>
       </label>

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./home/Home";
 import TripMap from "./tripMap/TripMap";
 import { BackgroundProvider } from "./contexts/StyleContext";
+import {ApiProvider} from "./contexts/ApiContext"
 import "./App.css";
 
 const App = () => {
@@ -12,10 +13,12 @@ const App = () => {
       <div className="app">
         <Router>
           <BackgroundProvider>
+              <ApiProvider>
               <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route path="/trip-map" element={<TripMap />} />
               </Routes>
+              </ApiProvider>
           </BackgroundProvider>
         </Router>
       </div>
