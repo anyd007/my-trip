@@ -69,6 +69,11 @@ input::placeholder{
     top: -10%;
     font-size: 15px;
 }
+.themeBtn{
+    position: absolute;
+    right: 0%;
+    top: 0%;
+}
 .btn{
     cursor: pointer;
     color: black;

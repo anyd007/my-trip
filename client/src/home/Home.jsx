@@ -1,53 +1,58 @@
 import React,{useState, useEffect, useMemo} from "react";
-import { useBackground } from "../styleConrxt/StyleContext";
-import {Bubbles} from "../loadnig/Loadnig";
-import {GeneralError} from "../errors/Errors"
+import { useBackground } from "../contexts/StyleContext";
+import { GeneralError } from "../errors/Errors";
 import "./home.css"
 
 const Home = (props)=>{
-const backgroundContext = useBackground()
-// const [startValue, setStartValue] = useState([])
-// const [endValue, setEndValue] = useState([])
+
+const {toggle, theme, darker} = useBackground()
+const [startValue, setStartValue] = useState([])
+const [endValue, setEndValue] = useState([])
+
 
  const getStartValue = (startValue) =>{
-    props.setStartValue(startValue)
+    setStartValue(startValue)
 }
 const getEndValue = (endValue) =>{
-    props.setEndValue(endValue)
+    setEndValue(endValue)
 }
 
+
 return(
-<div className="mainContener" style={backgroundContext.bg.light}>
+<div className="mainContener" style={theme} >
   <div className="titleContener">
       <h1>DOKĄD SIĘ WYBIERASZ??</h1>
   </div>
+   <button onClick={toggle} style={{color:theme.color}} className="btn themeBtn">{darker ? "MOTYW JASNY":"MOTYW CIEMNY"}</button>
   <div className="inputContener">
       <div>
-      <label htmlFor="tripStart">
-      <input name="tripStart" 
+      <label style={{color:theme.color}} htmlFor="tripStart">
+      <input style={{color:theme.color}}
+      name="tripStart" 
       id="tripStart" 
       className="itripInputs"
        type="text" 
        placeholder="WYZNACZ POCZĄTEK TRASY"
-       value={props.startValue}
+       value={startValue}
        onChange={e=> getStartValue(e.target.value)}/>
       <span className="spanAnime">WYZNACZ POCZĄTEK TRASY</span>
       </label>
       </div>
       <div className="tripEndDiv">
-      <label htmlFor="tripEnd">
-      <input name="tripEnd" 
+      <label style={{color:theme.color}} htmlFor="tripEnd">
+      <input style={{color:theme.color}}
+       name="tripEnd" 
       id="tripEnd" 
       type="text" 
       className="itripInputs"
        placeholder="WYZNACZ KONIEC TRASY"
-       value={props.endValue}
+       value={endValue}
        onChange={e=> getEndValue(e.target.value)}/>
       <span className="spanAnime">WYZNACZ KONIEC TRASY</span>
       </label>
       </div>
       <div>
-          <button className="btn" type="button">SPRAWDŹ</button>
+          <button style={{color:theme.color}} className="btn" type="button">SPRAWDŹ</button>
       </div>
   </div>
 </div>
