@@ -11,7 +11,7 @@ import "../contexts/styleContext.css"
 
 const Home = ()=>{
 const {toggle, theme, darker} = useBackground()
-const {dataFromStartApi, setDataFromStartApi, loading, error, setError, setLoading, startValue, setStartValue, info, setInfo} = useApi()
+const {dataFromStartApi, setDataFromStartApi, loading, error, setError, setLoading, startValue, setStartValue, info} = useApi()
 const [endValue, setEndValue] = useState([])
 
 useEffect(()=>{
@@ -36,7 +36,10 @@ useEffect(()=>{
 
 const handleSetValue = (e)=>{
     setStartValue(e)
-    setDataFromStartApi([])
+    setTimeout(() => {
+        setDataFromStartApi([])
+    }, 150);
+    
 }
 
 return(
