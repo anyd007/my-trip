@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./home/Home";
-import TripMap from "./tripMap/TripMap";
-import { BackgroundProvider } from "./contexts/StyleContext";
-import {ApiProvider} from "./contexts/ApiContext"
+import Home from "./components/home/Home";
+import TripMap from "./components/tripMap/TripMap";
+import { BackgroundProvider } from "./components/contexts/StyleContext";
+import {ApiProvider} from "./components/contexts/ApiContext"
 import "./App.css";
 
 const App = () => {
