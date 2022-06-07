@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import TripMap from "./components/tripMap/TripMap";
 import { BackgroundProvider } from "./components/contexts/StyleContext";
-import {ApiProvider} from "./components/contexts/ApiContext"
+import { AutocompliteProvider} from "./components/contexts/ApiAutoCompliteContext"
 import "./App.css";
 
 const App = () => {
@@ -13,12 +13,12 @@ const App = () => {
       <div className="app">
         <Router>
           <BackgroundProvider>
-              <ApiProvider>
+              <AutocompliteProvider>
               <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route path="/trip-map" element={<TripMap />} />
               </Routes>
-              </ApiProvider>
+              </AutocompliteProvider>
           </BackgroundProvider>
         </Router>
       </div>

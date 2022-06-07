@@ -1,7 +1,7 @@
 import React,{useState, useEffect, useRef} from "react";
 import uniqid from "uniqid"
 import { useBackground } from "../contexts/StyleContext";
-import { useApi } from "../contexts/ApiContext";
+import { useAutoComplite } from "../contexts/ApiAutoCompliteContext";
 import { Bubbles } from "../loadnig/Loadnig"
 import { Info } from "../errors/Errors";
 import { FaRegWindowClose } from 'react-icons/fa';
@@ -11,14 +11,16 @@ import "../contexts/styleContext.css"
 
 const Home = ()=>{
 const {toggle, theme, darker} = useBackground()
-const {dataFromStartApi, setDataFromStartApi, loading, error, setError, setLoading, startValue, setStartValue, info} = useApi()
-const [endValue, setEndValue] = useState([])
+const {dataFromStartApi, setDataFromStartApi, dataFromEndApi,setDataFromEndApi, loading, error, setError, setLoading, startValue, 
+    endValue, setEndValue, setStartValue, info} = useAutoComplite()
 
 useEffect(()=>{
     setDataFromStartApi(dataFromStartApi)
+    console.log(dataFromStartApi);
+    setDataFromEndApi(dataFromEndApi)
     setError(error)
     setLoading(loading)
-    },[dataFromStartApi, error, loading])
+    },[dataFromStartApi, dataFromEndApi, error, loading])
 
  const getStartValue = (startValue) =>{
     setStartValue(startValue)
@@ -29,9 +31,15 @@ const getEndValue = (endValue) =>{
 }
 useEffect(()=>{
     setStartValue(startValue)
+    if(startValue===[] || startValue.length===0){
+        setDataFromStartApi([])
+    }
 },[startValue])
 useEffect(()=>{
     setEndValue(endValue)
+    if(endValue===[] || endValue.length===0){
+        setDataFromEndApi([])
+    }
 },[endValue])
 
 const handleSetValue = (e)=>{
@@ -39,8 +47,14 @@ const handleSetValue = (e)=>{
     setTimeout(() => {
         setDataFromStartApi([])
     }, 150);
-    
 }
+const handleEndValue = (e) =>{
+    setEndValue(e)
+    setTimeout(() => {
+        setDataFromEndApi([])
+    }, 150);
+}
+
 
 return(
 <div className="mainContener" style={theme} >
@@ -77,11 +91,14 @@ return(
       type="text" 
       className="itripInputs"
        placeholder="WYZNACZ KONIEC TRASY"
-       value={endValue ?? ""}
+       value={endValue}
        onChange={e=> getEndValue(e.target.value)}/>
       <span className="spanAnime">WYZNACZ KONIEC TRASY</span>
       </label>
       </div>
+      {dataFromEndApi && dataFromEndApi.map(el=>(
+          <div onClick={(e)=>handleEndValue(el.label)} key={uniqid()} className="autocomplite">{el.label}</div>
+      ))}
           <button style={{color:theme.color}} className="btn" type="button">SPRAWDŹ</button>
       </div>
   </div>
