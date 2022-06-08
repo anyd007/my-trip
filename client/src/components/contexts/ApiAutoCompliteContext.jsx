@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { AxiosErrors } from "../errors/Errors";
 import axios from "axios";
 
 const ApiContext = createContext();
@@ -8,6 +9,10 @@ export const useAutoComplite = () => {
 };
 
 export const AutocompliteProvider = ({ children }) => {
+  const [tripId, setTripId] = useState({
+    startId:'',
+    endId:''
+  })
   const [dataFromStartApi, setDataFromStartApi] = useState([]);
   const [dataFromEndApi, setDataFromEndApi] = useState([]);
   const [startValue, setStartValue] = useState([]);
@@ -44,6 +49,10 @@ export const AutocompliteProvider = ({ children }) => {
         .then((response) => response.data.items)
         .then((data) => {
           setDataFromStartApi(data.map((el) => el.address));
+          setTripId(prev=>({
+              ...prev,
+              startId:(data.map(el=>el.id))
+          }))
         })
         .catch((err) => {
           setLoading(false);
@@ -76,9 +85,13 @@ export const AutocompliteProvider = ({ children }) => {
         .get("https://autocomplete.search.hereapi.com/v1/autocomplete", {
           params: params2,
         })
-        .then((response) => response.data.items.map((el) => el.address))
+        .then((response) => response.data.items)
         .then((data) => {
-          setDataFromEndApi(data);
+          setDataFromEndApi(data.map((el) => el.address));
+          setTripId(prev=>({
+            ...prev,
+            endId:(data.map(el=>el.id))
+        }))
         })
         .catch((err) => {
           setLoading(false);
@@ -103,6 +116,7 @@ export const AutocompliteProvider = ({ children }) => {
   return (
     <ApiContext.Provider
       value={{
+        tripId,
         dataFromStartApi,
         setDataFromStartApi,
         dataFromEndApi,

@@ -10,6 +10,15 @@ export const Info = ()=>{
      
     )
 }
+export const Info2 = ()=>{
+
+    return(
+        <div className="info">
+            <div className="infoText">PODANA LOKALIZACJA NIE JEST ZBYT DOKŁADNA, SPRECYZUJ</div>
+        </div>
+     
+    )
+}
 
 export const AxiosErrors = ()=>{
     let err =''

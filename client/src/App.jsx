@@ -4,6 +4,7 @@ import Home from "./components/home/Home";
 import TripMap from "./components/tripMap/TripMap";
 import { BackgroundProvider } from "./components/contexts/StyleContext";
 import { AutocompliteProvider} from "./components/contexts/ApiAutoCompliteContext"
+import { LocationProvider } from "./components/contexts/ApiLocation";
 import "./App.css";
 
 const App = () => {
@@ -14,10 +15,12 @@ const App = () => {
         <Router>
           <BackgroundProvider>
               <AutocompliteProvider>
+                <LocationProvider>
               <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route path="/trip-map" element={<TripMap />} />
               </Routes>
+              </LocationProvider>
               </AutocompliteProvider>
           </BackgroundProvider>
         </Router>
