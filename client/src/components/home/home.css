@@ -1,6 +1,6 @@
 body,html {
     margin: auto;
-    height: 100vh;
+    /* height: 100vh; */
   }
 .titleContener, .inputContener{
     text-align: center;

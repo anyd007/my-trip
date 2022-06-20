@@ -2,13 +2,21 @@
   "name": "my-trip",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/anyd007/my-trip.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anyd007/my-trip.git"
+  },
   "author": "Andrzej Gębala <andrzej.gebala35@gmail.com>",
   "license": "MIT",
-
-"scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "start": "cd server && npm install && npm start",
-  "heroku-postbuild": "cd client && npm install && npm run build"
-}
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd server && npm install && npm start",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "description": "",
+  "bugs": {
+    "url": "https://github.com/anyd007/my-trip/issues"
+  },
+  "homepage": "https://github.com/anyd007/my-trip#readme",
+  "keywords": []
 }
