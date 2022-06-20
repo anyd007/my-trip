@@ -38,9 +38,7 @@ import { Bubbles } from "../loadnig/Loadnig"
 const Map = (props) =>{
    const ref = useRef()
     const [maper, setMap]=useState(null)
-    useEffect(()=>{
-        setMap(null)
-    })
+   
     const [loading, setLoading]=useState(true)
  useEffect(()=>{
     if (!maper) {
@@ -62,18 +60,16 @@ const Map = (props) =>{
                 map.getViewPort().resize();
               });
               setMap(map);
-              setLoading(false)
+             setLoading(false)
             }
-            
  },[])
-
     return (
     <>
-    {loading && <Bubbles />}
       <div
       style={{ position: 'relative', width: '100vw', height:'80vh' }}
       ref={ref}
       />
+      {loading && <Bubbles />}
     </>
     )
   
