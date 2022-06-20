@@ -21,7 +21,8 @@
   "homepage": "https://github.com/anyd007/my-trip#readme",
   "keywords": [],
   "dependencies": {
-    "@here/maps-api-for-javascript": "^1.30.17"
+    "@here/maps-api-for-javascript": "^1.30.17",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "react-app-rewired": "^2.2.1",
