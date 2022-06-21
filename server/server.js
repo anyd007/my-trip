@@ -13,7 +13,7 @@ app.get("*", (req,res)=>{
     res.sendFile(path.join(__dirname, "../client/build/index.html"))
 })
 
-const herokuPort = process.env.PORT || 3000
+const herokuPort = process.env.PORT || 8081
 app.listen(herokuPort, ()=>{
     console.log(`Działam na porcie ${herokuPort}`);
 })
