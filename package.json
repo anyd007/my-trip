@@ -11,7 +11,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd server && npm install && npm start",
-    "heroku-postbuild": "cd client && npm install && npm run build",
+    "heroku-postbuild": "cd client && npm install --dev && npm run build",
     "bundle": "webpack"
   },
   "description": "",
@@ -22,10 +22,11 @@
   "keywords": [],
   "dependencies": {
     "@here/maps-api-for-javascript": "^1.30.17",
-    "path": "^0.12.7",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
     "react-app-rewired": "^2.2.1",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0"
   }
- 
 }
